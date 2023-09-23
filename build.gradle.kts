@@ -32,6 +32,8 @@ dependencies {
 	testImplementation("io.mockk:mockk:1.13.7")
 	implementation("io.github.serpro69:kotlin-faker:1.15.0-rc.1")
 	implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+//	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2")
+//	implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.0")
 }
 
 tasks.withType<KotlinCompile> {
