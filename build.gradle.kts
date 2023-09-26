@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
+	id("jacoco")
 }
 
 group = "com.cesarlucasjunior"
@@ -25,7 +26,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly("org.postgresql:postgresql")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.0")
 	implementation("org.springframework:spring-jms:6.0.11")
 	implementation("software.amazon.awssdk:sqs:2.20.139")
 	implementation("com.amazonaws:amazon-sqs-java-messaging-lib:2.1.1")
@@ -45,4 +46,5 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	finalizedBy("jacocoTestReport")
 }
