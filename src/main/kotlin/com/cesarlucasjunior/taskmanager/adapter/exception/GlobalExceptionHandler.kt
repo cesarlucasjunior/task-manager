@@ -18,4 +18,13 @@ class GlobalExceptionHandler: ResponseEntityExceptionHandler() {
         problemDetail.setProperty("timestamp", Instant.now())
         return problemDetail
     }
+
+    @ExceptionHandler(ListenerJmsException::class)
+    fun handleWithProblemsInJmsListener(listenerJmsException: ListenerJmsException): ProblemDetail {
+        val problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, listenerJmsException.localizedMessage)
+        problemDetail.title = "Problema na captura de mensagens do listner."
+        problemDetail.detail = "Não soubemos especificar o motivo do erro."
+        problemDetail.setProperty("timestamp", Instant.now())
+        return problemDetail
+    }
 }

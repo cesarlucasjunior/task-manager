@@ -2,6 +2,7 @@ package com.cesarlucasjunior.taskmanager.adapter.conf
 
 import com.amazon.sqs.javamessaging.ProviderConfiguration
 import com.amazon.sqs.javamessaging.SQSConnectionFactory
+import com.cesarlucasjunior.taskmanager.adapter.exception.ListenerJmsException
 import jakarta.annotation.PostConstruct
 import jakarta.jms.Destination
 import jakarta.jms.Session
@@ -36,7 +37,7 @@ class JmsConfig (private var sqsConfiguration: SqsConfiguration) {
         jmsListener.setDestinationResolver(DynamicDestinationResolver())
         jmsListener.setConcurrency("3-10")
         jmsListener.setSessionAcknowledgeMode(Session.CLIENT_ACKNOWLEDGE)
-        jmsListener.setErrorHandler{t:Throwable -> println("Erro no listener: ${t.message}") }
+        jmsListener.setErrorHandler{t:Throwable -> throw ListenerJmsException(t.message) }
         return jmsListener
     }
 
