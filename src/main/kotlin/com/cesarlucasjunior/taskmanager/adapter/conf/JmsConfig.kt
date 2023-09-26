@@ -36,6 +36,7 @@ class JmsConfig (private var sqsConfiguration: SqsConfiguration) {
         jmsListener.setDestinationResolver(DynamicDestinationResolver())
         jmsListener.setConcurrency("3-10")
         jmsListener.setSessionAcknowledgeMode(Session.CLIENT_ACKNOWLEDGE)
+        jmsListener.setErrorHandler{t:Throwable -> println("Erro no listener: ${t.message}") }
         return jmsListener
     }
 
