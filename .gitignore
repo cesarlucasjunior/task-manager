@@ -35,5 +35,10 @@ out/
 
 ### VS Code ###
 .vscode/
-.volume
+
+### Projeto ###
+.kotlin/
+*.log
+.volume/
 .env
+!.env.example
